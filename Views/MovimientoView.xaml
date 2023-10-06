@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PocketOne.Views.MovimientoView"
+             xmlns:vm="clr-namespace:PocketOne.ViewModels"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:thickness ="clr-namespace:Microsoft.Maui;assembly=Microsoft.Maui"
+             x:DataType="vm:MovimientoViewModel"
+             Title="Movimientos del periodo">
+    
+    <VerticalStackLayout>
+        
+
+        <Grid Background="White">
+
+            <Frame BorderColor="{OnIdiom Default=#E2E2E2, Desktop=#C2C2C2}" MaximumHeightRequest="{OnPlatform MacCatalyst=800}"
+                VerticalOptions="{OnPlatform MacCatalyst=Center}" BackgroundColor="White"
+                HasShadow="False" Grid.ColumnSpan="{OnIdiom Default=2, Desktop=1}"
+                CornerRadius="10" Grid.Column="0" WidthRequest="{OnPlatform WinUI=400, MacCatalyst=600, Default=-1}"
+                HorizontalOptions="{OnIdiom Desktop=Center, Default=Fill}" Padding="0">
+                <Frame.Margin>
+                    <OnPlatform x:TypeArguments="thickness:Thickness">
+                        <On Platform="Android"  Value="10"/>
+                        <On Platform="UWP" Value="20"/>
+                    </OnPlatform>
+                </Frame.Margin>
+
+                <Grid HeightRequest="600" RowDefinitions="0.9*, 1, 0.1*">
+                    <sf:SfDataForm x:Name="periodoCardForm"
+                                         AutoGenerateItems="False"
+                                         DataObject="{Binding MovimientoDetails}"
+                                         ValidationMode="PropertyChanged"
+                                         LayoutType="TextInputLayout">
+                        <sf:SfDataForm.TextInputLayoutSettings>
+                            <sf:TextInputLayoutSettings ShowHelperText="True"
+                                                              FocusedStroke="{StaticResource Primary}"/>
+                        </sf:SfDataForm.TextInputLayoutSettings>
+
+                        <sf:SfDataForm.Items>
+
+                            <sf:DataFormGroupItem Name="Descripcion">
+                                <sf:DataFormGroupItem.Items>
+                                    <sf:DataFormComboBoxItem FieldName="SubCategorias">
+                                    </sf:DataFormComboBoxItem>
+
+                                    <sf:DataFormComboBoxItem FieldName="Tipos">
+                                    </sf:DataFormComboBoxItem>
+
+                                </sf:DataFormGroupItem.Items>
+
+                            </sf:DataFormGroupItem>
+
+                            <sf:DataFormGroupItem Name="Valor">
+                                <sf:DataFormGroupItem.Items>
+                                    <sf:DataFormNumericItem FieldName="Valor">
+                                    </sf:DataFormNumericItem>
+                                </sf:DataFormGroupItem.Items>
+                            </sf:DataFormGroupItem>
+
+                            <sf:DataFormGroupItem Name="Estado">
+                                <sf:DataFormGroupItem.Items>
+                                    <sf:DataFormCheckBoxItem FieldName="Estado">
+                                    </sf:DataFormCheckBoxItem>
+                                </sf:DataFormGroupItem.Items>
+                            </sf:DataFormGroupItem>
+
+                            <sf:DataFormGroupItem Name="Fechas">
+                                <sf:DataFormGroupItem.Items>
+
+                                    <sf:DataFormDateItem FieldName="FechaPeriodo"  LayoutType="Default">
+                                    </sf:DataFormDateItem>
+
+                                    <sf:DataFormDateItem FieldName="FechaLimite"  LayoutType="Default">
+                                    </sf:DataFormDateItem>
+
+                                    <sf:DataFormDateItem FieldName="FechaReal"  LayoutType="Default">
+                                    </sf:DataFormDateItem>
+
+                                </sf:DataFormGroupItem.Items>
+
+                            </sf:DataFormGroupItem>
+
+                        </sf:SfDataForm.Items>
+                    </sf:SfDataForm>
+                    <Line Grid.Row="1" Background="#F5F5F5" />
+                    <Button 
+                        Grid.Row="2"
+                        Command="{Binding SaveCommand}" Text="Guardar"
+                        HeightRequest="40"
+                        VerticalOptions="Center"
+                        FontSize="16"
+                        CornerRadius="5"
+                        WidthRequest="200"
+                        HorizontalOptions="Center">
+                    </Button>
+                </Grid>
+
+            </Frame>
+        </Grid>
+        
+    </VerticalStackLayout>
+</ContentPage>

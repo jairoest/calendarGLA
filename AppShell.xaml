@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PocketOne.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PocketOne"
+    xmlns:vi="clr-namespace:PocketOne.Views"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutIcon="homep1.png"
+    Shell.TabBarIsVisible="False"
+    >
+
+    <Shell.FlyoutHeader>
+        <Grid RowDefinitions="Auto, 15">
+            <Image Opacity="0.2" Source="flyout_header.png"/>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid Padding="5" ColumnSpacing="25" RowDefinitions="10, Auto, 7, 1" ColumnDefinitions="15, 40, *">
+                <Ellipse Grid.Row="1" Grid.Column="1" Fill="{StaticResource Primary}" Opacity="0.5" WidthRequest="40" HeightRequest="40"/>
+                <Image Grid.Row="1" Grid.Column="1" Source="{Binding FlyoutIcon}" HeightRequest="40" />
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Title}" FontAttributes="Bold" VerticalTextAlignment="Center" />
+
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate vi:PeriodoCardView}"
+            FlyoutIcon="home.svg"    
+            Route="PeriodoCardView" />
+
+        <ShellContent
+            Title="Dashboard"
+            ContentTemplate="{DataTemplate vi:DashboardView}"
+            FlyoutIcon="dashboard.svg"    
+            Route="DashboardView" />
+
+    </FlyoutItem>
+
+    <FlyoutItem FlyoutIcon="settings" Title="Settings" FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent
+                Title="Periodos"
+                ContentTemplate="{DataTemplate vi:ListaPeriodos}"
+                Route="ListaPeriodos" />
+
+        <ShellContent
+                Title="Categorias"
+                ContentTemplate="{DataTemplate vi:ListaCategorias}"
+                Route="ListaCategorias" />
+
+        <ShellContent
+                Title="Subcategorias"
+                ContentTemplate="{DataTemplate vi:ListaSubCategorias}"
+                Route="ListaSubCategorias" />
+
+    </FlyoutItem>
+
+</Shell>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PocketOne.Views.ListaSubCategorias"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:vm="clr-namespace:PocketOne.ViewModels"
+             xmlns:mo="clr-namespace:PocketOne.Models"
+             xmlns:te="clr-namespace:PocketOne.Views.Templates"
+             Title="Lista de subcategorias"
+             x:DataType="vm:SubCategoriasViewModel">
+
+    <VerticalStackLayout >
+        <Button Command="{Binding AddNewCommand}" Text="Agregar"></Button>
+        <Button Command="{Binding ListarSubCategoriasCommand}" Text="Ver categorias"></Button>
+        <Button Command="{Binding EliminarSubCategoriaCommand}" CommandParameter="{Binding Path=SelectedItem, Source={x:Reference listView}}" Text="Eliminar"></Button>
+        <Button Command="{Binding EditarSubCategoriaCommand}" CommandParameter="{Binding Path=SelectedItem, Source={x:Reference listView}}" Text="Editar"></Button>
+
+        <syncfusion:SfListView x:Name="listView" 
+                               ItemsSource="{Binding SubCategorias}"
+                               ItemSize="70"
+                               SelectedItem="{Binding SubCategoriaSeleccionada}"
+                               SelectionChangedCommand="{Binding EditarSubCategoriaCommand}"
+                               SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference listView}}"
+                               SelectionMode="Single"
+                               SelectionGesture="Tap"
+                               SelectionBackground="LightBlue">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate x:DataType="mo:SubCategoria">
+                    <!--<te:ItemPeriodo/>-->
+                    <VerticalStackLayout x:DataType="mo:SubCategoria">
+                        <Label Text="{Binding Id}" />
+                        <Label Text="{Binding IdCategoria}" />
+                        <Label Text="{Binding NombreSubCategoria}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+
+    </VerticalStackLayout>
+</ContentPage>

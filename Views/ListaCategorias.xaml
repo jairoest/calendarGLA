@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PocketOne.Views.ListaCategorias"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:vm="clr-namespace:PocketOne.ViewModels"
+             xmlns:mo="clr-namespace:PocketOne.Models"
+             xmlns:te="clr-namespace:PocketOne.Views.Templates"
+             Title="Lista de Categorias"
+             x:DataType="vm:CategoriasViewModel">
+
+    <VerticalStackLayout >
+        <Button Command="{Binding AddNewCommand}" Text="Agregar"></Button>
+        <Button Command="{Binding ListarCategoriasCommand}" Text="Ver Categorias"></Button>
+        <Button Command="{Binding EliminarCategoriaCommand}" CommandParameter="{Binding Path=SelectedItem, Source={x:Reference listView}}" Text="Eliminar"></Button>
+        <Button Command="{Binding EditarCategoriaCommand}" CommandParameter="{Binding Path=SelectedItem, Source={x:Reference listView}}" Text="Editar"></Button>
+
+        <syncfusion:SfListView x:Name="listView" 
+                               ItemsSource="{Binding Categorias}"
+                               ItemSize="70"
+                               SelectedItem="{Binding CategoriaSeleccionada}"
+                               SelectionChangedCommand="{Binding EditarCategoriaCommand}"
+                               SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference listView}}"
+                               SelectionMode="Single"
+                               SelectionGesture="Tap"
+                               SelectionBackground="LightBlue">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate x:DataType="mo:Categoria">
+                    <te:ItemCategoria/>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+
+    </VerticalStackLayout>
+</ContentPage>
