@@ -27,11 +27,11 @@ public partial class CategoriasViewModel: BaseViewModel
         if (lista.Count == 0)
         {
             categoria_service.LlenarCategoriasBase();
+            lista = await categoria_service.GetAll();
         }
-        else
-        {
-            foreach (var item in lista) Categorias.Add(item);
-        }
+
+        foreach (var item in lista) Categorias.Add(item);
+
         IsLoading = false;
         IsRefreshing = false;
     }

@@ -36,7 +36,7 @@
 
             <Frame Grid.Row="1" BorderColor="LightGray"
              CornerRadius="20"
-             WidthRequest="180"
+             WidthRequest="380"
              HeightRequest="265"
              VerticalOptions="Center"
              HorizontalOptions="Center"

@@ -28,6 +28,7 @@
     </Shell.ItemTemplate>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
         <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate vi:PeriodoCardView}"
@@ -40,23 +41,23 @@
             FlyoutIcon="dashboard.svg"    
             Route="DashboardView" />
 
-    </FlyoutItem>
-
-    <FlyoutItem FlyoutIcon="settings" Title="Settings" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
-                Title="Periodos"
-                ContentTemplate="{DataTemplate vi:ListaPeriodos}"
-                Route="ListaPeriodos" />
+            Title="Categorias"
+            ContentTemplate="{DataTemplate vi:ListaCategorias}"
+            FlyoutIcon="categorias.svg"    
+            Route="ListaCategorias" />
 
         <ShellContent
-                Title="Categorias"
-                ContentTemplate="{DataTemplate vi:ListaCategorias}"
-                Route="ListaCategorias" />
+            Title="Periodos"
+            ContentTemplate="{DataTemplate vi:ListaPeriodos}"
+            FlyoutIcon="periodos.svg"    
+            Route="ListaPeriodos" />
 
         <ShellContent
-                Title="Subcategorias"
-                ContentTemplate="{DataTemplate vi:ListaSubCategorias}"
-                Route="ListaSubCategorias" />
+            Title="Subcategorias"
+            ContentTemplate="{DataTemplate vi:ListaSubCategorias}"
+            FlyoutIcon="subcategorias.svg"
+            Route="ListaSubCategorias" />
 
     </FlyoutItem>
 

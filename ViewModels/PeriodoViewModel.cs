@@ -65,6 +65,16 @@ public partial class PeriodoViewModel : BaseViewModel
 
         PeriodoDetails = await periodo_service.GetByEstado(true);
 
+        if(PeriodoDetails == null)
+        {
+            var res = await _dialog.ShowAlertAsync("Iniciar", $"No hay información de periodos. Desea iniciar los datos iniciales?", "Aceptar", "Cancelar");
+            if (res)
+            {
+                periodo_service.LlenarPeriodosBase();
+                PeriodoDetails = await periodo_service.GetByEstado(true);
+            }
+        }
+
         Titulo = PeriodoDetails.FechaPeriodo.ToString("MMMM");
 
         IsLoading = false;

@@ -16,8 +16,7 @@ public partial class MovimientoViewModel : BaseViewModel
     public MovimientoViewModel()
     {
         movimiento_service = App.Current.Services.GetRequiredService<IMovimiento>();
-        subcategoria_service = App.Current.Services.GetService<ISubCategoria>();
-
+        subcategoria_service = App.Current.Services.GetRequiredService<ISubCategoria>();
     }
 
     [ObservableProperty]
@@ -71,7 +70,7 @@ public partial class MovimientoViewModel : BaseViewModel
         foreach (var item in listaSubCategorias) SubCategorias.Add(item.NombreSubCategoria);
 
         // Titulo = PeriodoDetails.FechaPeriodo.ToString("MMMM");
-        Titulo = $"Lista de subcategorias";
+        // Titulo = $"Lista de subcategorias";
 
         IsLoading = false;
         IsRefreshing = false;

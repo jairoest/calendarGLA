@@ -5,6 +5,7 @@ public partial class AppShell : Shell
     public AppShell()
     {
         InitializeComponent();
+
         Routing.RegisterRoute(nameof(ListaPeriodos), typeof(ListaPeriodos));
         Routing.RegisterRoute(nameof(PeriodoView), typeof(PeriodoView));
         Routing.RegisterRoute(nameof(PeriodoCardView), typeof(PeriodoCardView));

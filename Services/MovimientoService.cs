@@ -31,25 +31,6 @@ namespace PocketOne.Services
         {
             List<Movimiento> listaMovimientos = new List<Movimiento>
             {
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Nomina", "Ingreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "TC Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Credito 1 Consumo Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Credito 2 Libranza Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Uni Andes", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Gimandes", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Servicios ETB", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Servicios Codensa", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Servicios EAAB", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "ETB Jairo", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Mercado Alkosto", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "TC Itau", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Credito AV Villas", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Credito AV Villas2 Predial", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Carro Gasolina", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Mercado Naranjas", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Comida Hatchiko", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 06, 30), "Comida", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-
                 new Movimiento().Nuevo(new System.DateTime(2023, 07, 31), "Nomina", "Ingreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
                 new Movimiento().Nuevo(new System.DateTime(2023, 07, 31), "TC Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
                 new Movimiento().Nuevo(new System.DateTime(2023, 07, 31), "Credito 1 Consumo Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
@@ -86,7 +67,26 @@ namespace PocketOne.Services
                 new Movimiento().Nuevo(new System.DateTime(2023, 08, 31), "Carro Gasolina", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
                 new Movimiento().Nuevo(new System.DateTime(2023, 08, 31), "Mercado Naranjas", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
                 new Movimiento().Nuevo(new System.DateTime(2023, 08, 31), "Comida Hatchiko", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
-                new Movimiento().Nuevo(new System.DateTime(2023, 08, 31), "Comida", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true)
+                new Movimiento().Nuevo(new System.DateTime(2023, 08, 31), "Comida", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Nomina", "Ingreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "TC Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Credito 1 Consumo Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Credito 2 Libranza Scotia", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Uni Andes", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Gimandes", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Servicios ETB", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Servicios Codensa", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Servicios EAAB", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "ETB Jairo", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Mercado Alkosto", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "TC Itau", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Credito AV Villas", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Credito AV Villas2 Predial", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Carro Gasolina", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Mercado Naranjas", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Comida Hatchiko", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true),
+                new Movimiento().Nuevo(new System.DateTime(2023, 09, 30), "Comida", "Egreso", 14430000, new System.DateTime(2023, 06, 25), new System.DateTime(2023, 06, 17), true)
 
             };
 

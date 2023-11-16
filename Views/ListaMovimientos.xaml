@@ -66,7 +66,7 @@
                                RowHeight="48"
                                HeightRequest="440"
                                SelectionMode="Single"
-                               AllowEditing="True"                               >
+                               AllowEditing="True" >
 
                         <sfgrid:SfDataGrid.DefaultStyle>
                             <sfgrid:DataGridStyle 
@@ -78,20 +78,16 @@
                         <sfgrid:SfDataGrid.Columns>
 
                             <sfgrid:DataGridDateColumn Visible="False" HeaderText="Periodo"
-                                             MinimumWidth="{StaticResource minimumWidth}"
                                              MappingName="FechaPeriodo"
                                              Format="MMMM">
                             </sfgrid:DataGridDateColumn>
 
-                            <sfgrid:DataGridComboBoxColumn HeaderText="Descripción"
+                            <sfgrid:DataGridTextColumn HeaderText="Descripción"
                                            MappingName="NomSubCategoria"
-                                           MaximumWidth="170"
-                                           BindingContext="{x:Reference MovimientosViewModel}"
-                                           ItemsSource="{Binding SubCategorias}">
-                            </sfgrid:DataGridComboBoxColumn>
+                                           MaximumWidth="170">
+                            </sfgrid:DataGridTextColumn>
 
                             <sfgrid:DataGridNumericColumn HeaderText="Valor"
-                                             MinimumWidth="{StaticResource minimumWidth}"
                                              MappingName="Valor"
                                              Format="$#####0"
                                              MaximumWidth="100"
@@ -103,20 +99,16 @@
                             </sfgrid:DataGridCheckBoxColumn>
 
                             <sfgrid:DataGridDateColumn HeaderText="Limite"
-                                             MinimumWidth="{StaticResource minimumWidth}"
                                              MappingName="FechaLimite">
                             </sfgrid:DataGridDateColumn>
 
                             <sfgrid:DataGridDateColumn HeaderText="Real"
-                                             MinimumWidth="{StaticResource minimumWidth}"
                                              MappingName="FechaReal">
                             </sfgrid:DataGridDateColumn>
 
-                            <sfgrid:DataGridComboBoxColumn HeaderText="Tipo"
-                                           MappingName="TipoMovimiento"
-                                           BindingContext="{x:Reference MovimientosViewModel}"
-                                                   ItemsSource="{Binding Tipos}">
-                            </sfgrid:DataGridComboBoxColumn>
+                            <sfgrid:DataGridTextColumn HeaderText="Tipo"
+                                           MappingName="TipoMovimiento">
+                            </sfgrid:DataGridTextColumn>
 
                         </sfgrid:SfDataGrid.Columns>
                     </sfgrid:SfDataGrid>

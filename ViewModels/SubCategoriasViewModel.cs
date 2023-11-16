@@ -27,11 +27,10 @@ public partial class SubCategoriasViewModel: BaseViewModel
         if (lista.Count == 0)
         {
             subcategoria_service.LlenarSubCategoriasBase();
+            lista = await subcategoria_service.GetAll();
         }
-        else
-        {
-            foreach (var item in lista) SubCategorias.Add(item);
-        }
+
+        foreach (var item in lista) SubCategorias.Add(item);
         
         IsLoading = false;
         IsRefreshing = false;

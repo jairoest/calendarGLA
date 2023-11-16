@@ -40,10 +40,10 @@
         /// </summary>
         public decimal Balance { get; set; }
 
-        public Periodo Nuevo(DateTime fechaPeriodo) 
+        public Periodo Nuevo(DateTime fechaPeriodo, bool procesoactual) 
         {
             this.FechaPeriodo = fechaPeriodo;
-            this.ProcesoActual = false;
+            this.ProcesoActual = procesoactual;
             this.Estado = false;
 
             return this;

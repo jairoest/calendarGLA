@@ -12,19 +12,23 @@ namespace PocketOne.Services
     {
         public SQLiteConnection connectionDB;
 
+        /*
         private readonly IPeriodo periodo_service;
         private readonly ICategoria categoria_service;
         private readonly ISubCategoria subcategoria_service;
         private readonly IMovimiento movimiento_service;
         private readonly IDialogService dialog_service;
+        */
 
         public SQLiteBase() 
         {
+            /*
             periodo_service = App.Current.Services.GetRequiredService<IPeriodo>();
             categoria_service = App.Current.Services.GetRequiredService<ICategoria>();
             subcategoria_service = App.Current.Services.GetRequiredService<ISubCategoria>();
             movimiento_service = App.Current.Services.GetRequiredService<IMovimiento>();
             dialog_service = App.Current.Services.GetRequiredService<IDialogService>();
+            */
 
             if (connectionDB != null) return;
 
@@ -81,21 +85,27 @@ namespace PocketOne.Services
         private async void LlenarCategoriasAsync()
         {
             // ****** Borrar contenido actual de la tabla de cursos
+            /*
             var lista = await categoria_service.GetAll();
             if (lista.Count == 0) categoria_service.LlenarCategoriasBase();
+            */
         }
 
         private async void LlenarSubCategoriasAsync()
         {
+            /*
             var lista = await subcategoria_service.GetAll();
             if (lista.Count == 0) subcategoria_service.LlenarSubCategoriasBase();
+            */
         }
 
 
         private async void LlenarPeriodosAsync()
         {
+            /*
             var lista = await periodo_service.GetAll();
             if (lista.Count == 0) periodo_service.LlenarPeriodosBase();
+            */
         }
 
         /// <summary>
@@ -103,8 +113,10 @@ namespace PocketOne.Services
         /// </summary>
         private async void LlenarMovimientosAsync()
         {
+            /*
             var lista = await movimiento_service.GetAll();
             if (lista.Count == 0) movimiento_service.LlenarMovimientosBase();
+            */
         }
         #endregion
     }

@@ -8,9 +8,14 @@
              xmlns:thickness ="clr-namespace:Microsoft.Maui;assembly=Microsoft.Maui"
              x:DataType="vm:MovimientoViewModel"
              Title="Movimientos del periodo">
-    
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+        EventName="Appearing"
+        Command="{Binding ListarSubCategoriasCommand}" />
+    </ContentPage.Behaviors>
+
     <VerticalStackLayout>
-        
 
         <Grid Background="White">
 
@@ -26,7 +31,7 @@
                     </OnPlatform>
                 </Frame.Margin>
 
-                <Grid HeightRequest="600" RowDefinitions="0.9*, 1, 0.1*">
+                <Grid HeightRequest="670" RowDefinitions="0.9*, 1, 0.1*">
                     <sf:SfDataForm x:Name="periodoCardForm"
                                          AutoGenerateItems="False"
                                          DataObject="{Binding MovimientoDetails}"
@@ -41,10 +46,10 @@
 
                             <sf:DataFormGroupItem Name="Descripcion">
                                 <sf:DataFormGroupItem.Items>
-                                    <sf:DataFormComboBoxItem FieldName="SubCategorias">
+                                    <sf:DataFormComboBoxItem FieldName="SubCategorias" ItemsSource="{Binding SubCategorias}">
                                     </sf:DataFormComboBoxItem>
 
-                                    <sf:DataFormComboBoxItem FieldName="Tipos">
+                                    <sf:DataFormComboBoxItem FieldName="Tipos" ItemsSource="{Binding Tipos}">
                                     </sf:DataFormComboBoxItem>
 
                                 </sf:DataFormGroupItem.Items>
@@ -84,16 +89,23 @@
                         </sf:SfDataForm.Items>
                     </sf:SfDataForm>
                     <Line Grid.Row="1" Background="#F5F5F5" />
-                    <Button 
+                    
+                    <!-- Command Ver detalle -->
+                    <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *" Grid.Row="3">
+                        <Button 
+                        Grid.Column="2"
                         Grid.Row="2"
+                        Margin="25, 0"
                         Command="{Binding SaveCommand}" Text="Guardar"
                         HeightRequest="40"
                         VerticalOptions="Center"
                         FontSize="16"
-                        CornerRadius="5"
-                        WidthRequest="200"
-                        HorizontalOptions="Center">
-                    </Button>
+                        CornerRadius="25"
+                        WidthRequest="150"
+                        HorizontalOptions="End"
+                        ImageSource="detallemovimientos.svg">
+                        </Button>
+                    </Grid>
                 </Grid>
 
             </Frame>

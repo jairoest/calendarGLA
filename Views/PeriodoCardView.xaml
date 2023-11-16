@@ -84,7 +84,7 @@
                     </Border.Shadow>
                     <Grid Style="{StaticResource GridItemResumenStyle}">
                         <Border Grid.Column="0" StrokeThickness="0" StrokeShape="RoundRectangle 20"
-                                            BackgroundColor="{StaticResource SeconaryBackground}">
+                                            >
                             <Image Source="ingresos.png" HeightRequest="36" />
                         </Border>
 
@@ -101,7 +101,7 @@
                     </Border.Shadow>
                     <Grid Style="{StaticResource GridItemResumenStyle}">
                         <Border StrokeThickness="0" StrokeShape="RoundRectangle 20"
-                                            BackgroundColor="{StaticResource SeconaryBackground}">
+                                            >
                             <Image Source="egresos.png" HeightRequest="36" />
                         </Border>
 
@@ -118,7 +118,7 @@
                     </Border.Shadow>
                     <Grid Style="{StaticResource GridItemResumenStyle}">
                         <Border StrokeThickness="0" StrokeShape="RoundRectangle 20"
-                                            BackgroundColor="{StaticResource SeconaryBackground}">
+                                            >
                             <Image Source="balance" HeightRequest="36" />
                         </Border>
 
@@ -135,7 +135,7 @@
                     </Border.Shadow>
                     <Grid Style="{StaticResource GridItemResumenStyle}">
                         <Border StrokeThickness="0" StrokeShape="RoundRectangle 20"
-                                            BackgroundColor="{StaticResource SeconaryBackground}">
+                                            >
                             <Image Source="saldo.png" HeightRequest="36" />
                         </Border>
 

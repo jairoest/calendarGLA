@@ -40,6 +40,13 @@ public partial class MovimientosViewModel: BaseViewModel
         IsLoading = true;
         Movimientos.Clear();
         var lista = await movimiento_service.GetAll();
+
+        if (lista.Count == 0)
+        {
+            movimiento_service.LlenarMovimientosBase();
+            lista = await movimiento_service.GetAll();
+        }
+
         foreach (var item in lista) Movimientos.Add(item);
         IsLoading = false;
         IsRefreshing = false;
@@ -144,12 +151,13 @@ public partial class MovimientosViewModel: BaseViewModel
         SubCategorias.Clear();
 
         var listaBase = await movimiento_service.GetAll();
+        // foreach (var item in listaBase) await movimiento_service.Delete(item);  // Borra todos los movimientos 
         if (listaBase.Count == 0)
         {
-            movimiento_service.LlenarMovimientosBase();            
+            movimiento_service.LlenarMovimientosBase();
         }
         var lista = await movimiento_service.GetbyPeriodo(PeriodoDetails.FechaPeriodo);
-        // foreach (var item in lista) await movimiento_service.Delete(item);  // Borra todos los movimientos 
+        
         foreach (var item in lista) Movimientos.Add(item);
 
         var listaSubCategorias = await subcategoria_service.GetAll();

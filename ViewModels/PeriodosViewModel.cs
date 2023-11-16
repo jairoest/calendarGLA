@@ -1,5 +1,6 @@
 ﻿// using Android.App;
 using CommunityToolkit.Mvvm.Input;
+using PocketOne.Services;
 using System.Collections.ObjectModel;
 
 namespace PocketOne.ViewModels;
@@ -26,7 +27,14 @@ public partial class PeriodosViewModel : BaseViewModel
         IsLoading = true;
         Periodos.Clear();
         var lista = await periodo_service.GetAll();
+        if (lista.Count == 0)
+        {
+            periodo_service.LlenarPeriodosBase();
+            lista = await periodo_service.GetAll();
+        }
+
         foreach (var item in lista) Periodos.Add(item);
+
         IsLoading = false;
         IsRefreshing = false;
     }

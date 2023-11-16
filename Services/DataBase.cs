@@ -257,9 +257,9 @@ namespace PocketOne.Services
 
             List<Periodo> listaPeriodo = new ()
             {
-                new Periodo().Nuevo(new DateTime(2023, 06, 30)),
-                new Periodo().Nuevo(new DateTime(2023, 07, 31)),
-                new Periodo().Nuevo(new DateTime(2023, 08, 31))
+                new Periodo().Nuevo(new DateTime(2023, 06, 30), false),
+                new Periodo().Nuevo(new DateTime(2023, 07, 31), false),
+                new Periodo().Nuevo(new DateTime(2023, 08, 31), true)
             };
 
             foreach (Periodo periodo in listaPeriodo)
