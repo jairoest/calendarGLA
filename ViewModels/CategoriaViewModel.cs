@@ -21,6 +21,9 @@ public partial class CategoriaViewModel : BaseViewModel
     [ObservableProperty]
     public int idSeleccionado;
 
+    [ObservableProperty]
+    public List<string> tipos = new() { "Ingreso", "Egreso" };
+
     public ObservableCollection<string> Errores { get; set; } = new();
 
     private string resultado;

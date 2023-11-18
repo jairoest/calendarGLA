@@ -10,10 +10,12 @@ namespace PocketOne.ViewModels;
 public partial class SubCategoriaViewModel : BaseViewModel
 {
     private readonly ISubCategoria subcategoria_service;
+    private readonly ICategoria categoria_service;
 
     public SubCategoriaViewModel()
     {
         subcategoria_service = App.Current.Services.GetRequiredService<ISubCategoria>();
+        categoria_service = App.Current.Services.GetRequiredService<ICategoria>();
     }
 
     [ObservableProperty]
@@ -23,6 +25,8 @@ public partial class SubCategoriaViewModel : BaseViewModel
     public int idSeleccionado;
 
     public ObservableCollection<string> Errores { get; set; } = new();
+    
+    public List<string> Categorias { get; set; } = new();
 
     private string resultado;
     public string Resultado
@@ -53,4 +57,16 @@ public partial class SubCategoriaViewModel : BaseViewModel
         await Shell.Current.Navigation.PopToRootAsync();
     }
 
+    [RelayCommand]
+    public async Task ListarCategorias()
+    {
+        IsLoading = true;
+        Categorias.Clear();
+
+        var listaCategorias = await categoria_service.GetAll();
+        foreach (var item in listaCategorias) Categorias.Add(item.NombreCategoria);
+
+        IsLoading = false;
+        IsRefreshing = false;
+    }
 }

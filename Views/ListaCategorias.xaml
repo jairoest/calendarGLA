@@ -23,7 +23,7 @@
                 <Label Text="Categorías" Grid.Row="0" Grid.Column="0" Margin="20, 40" FontSize="25" 
                        TextColor="White" Grid.ColumnSpan="2">
                 </Label>
-                <Image Source="detallemovimientos.svg" Grid.Row="0" Grid.Column="1" 
+                <Image Source="categorias.svg" Grid.Row="0" Grid.Column="1" 
                        HeightRequest="80" WidthRequest="80" HorizontalOptions="EndAndExpand"></Image>
             </Grid>
         </Grid>

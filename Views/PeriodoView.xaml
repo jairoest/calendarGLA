@@ -15,7 +15,7 @@
                   HeightRequest="150" Margin="0, 0" />
 
             <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *">
-                <Label Text="{Binding Path=FechaPeriodo, Source={x:Reference PeriodoDetails}, StringFormat='{0:MMMM}'}" Grid.Row="0" Grid.Column="0" Margin="20, 40" FontSize="25" 
+                <Label Text="{Binding PeriodoDetails.FechaPeriodo, StringFormat='{0:MMMM}'}" Grid.Row="0" Grid.Column="0" Margin="20, 40" FontSize="25" 
                        TextColor="White" Grid.ColumnSpan="2">
                 </Label>
                

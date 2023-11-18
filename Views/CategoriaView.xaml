@@ -21,7 +21,7 @@
                 <Label Text="{Binding Titulo}" Grid.Row="0" Grid.Column="0" Margin="20, 40" FontSize="25" 
                        TextColor="White" Grid.ColumnSpan="2">
                 </Label>
-                <Image Source="detallemovimientos.svg" Grid.Row="0" Grid.Column="1" 
+                <Image Source="categoria.svg" Grid.Row="0" Grid.Column="1" 
                        HeightRequest="80" WidthRequest="80" HorizontalOptions="EndAndExpand"></Image>
             </Grid>
         </Grid>
@@ -38,7 +38,32 @@
                 </Frame.Shadow>
 
                 <Grid>
-                    <sf:SfDataForm DataObject="{Binding CategoriaDetails}" />
+                    <sf:SfDataForm x:Name="periodoCardForm"
+                                         AutoGenerateItems="False"
+                                         DataObject="{Binding CategoriaDetails}"
+                                         ValidationMode="PropertyChanged"
+                                         LayoutType="TextInputLayout">
+
+                        <sf:SfDataForm.TextInputLayoutSettings>
+                            <sf:TextInputLayoutSettings ShowHelperText="True"
+                                                              FocusedStroke="{StaticResource Primary}"/>
+                        </sf:SfDataForm.TextInputLayoutSettings>
+
+                        <sf:SfDataForm.Items>
+
+                            <sf:DataFormTextItem LabelText="Categoria" FieldName="NombreCategoria">
+                            </sf:DataFormTextItem>
+
+                            <sf:DataFormComboBoxItem LabelText="Tipo" FieldName="Tipos" ItemsSource="{Binding Tipos}">
+                            </sf:DataFormComboBoxItem>
+
+                            <sf:DataFormTextItem LabelText="Id" FieldName="Id">
+                            </sf:DataFormTextItem>
+
+                        </sf:SfDataForm.Items>
+                    </sf:SfDataForm>
+
+
                 </Grid>
 
             </Frame>
