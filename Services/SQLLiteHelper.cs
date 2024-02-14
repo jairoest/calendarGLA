@@ -1,5 +1,5 @@
 ﻿
-namespace PocketOne.Services
+namespace CalendarAE.Services
 {
     public class SQLLiteHelper<T> : SQLiteBase where T : BaseModel, new()
     {

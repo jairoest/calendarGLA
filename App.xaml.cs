@@ -1,7 +1,7 @@
-﻿using PocketOne.Interfaces;
-using PocketOne.Services;
+﻿using CalendarAE.Interfaces;
+using CalendarAE.Services;
 
-namespace PocketOne;
+namespace CalendarAE;
 
 public partial class App : Application
 {
@@ -16,7 +16,8 @@ public partial class App : Application
 
         InitializeComponent();
 
-        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjU4ODIyMUAzMjMyMmUzMDJlMzBXTVNiRUJITjVJS2c3NGI4L2t1UklXY0FrZlJNdUNNeGFyZ3NSNzRJeDk0PQ ==; MjU4ODIyMkAzMjMyMmUzMDJlMzBib0w5ZExOalBsb2kvVVIxZmtFTHF1Yk1TY1o0NlhUTnNadjloRFNzWlQwPQ ==");
+        // License 24.2.5
+        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzA2ODc1MEAzMjM0MmUzMDJlMzBCNXpQSU9Bbm9PQUVma1hia3FOVXRncWxjZ01KMmI0ZkUwNEkzVDZmOHA4PQ ==; MzA2ODc1MUAzMjM0MmUzMDJlMzBBVktIUEpscUZOV3ZYZC9ReXQ3a0tMbEFQUk5TUnhJOWtBOHFNclpSQndnPQ ==");
 
         MainPage = new AppShell();
     }
@@ -24,39 +25,17 @@ public partial class App : Application
     public static IServiceProvider ConfigureServices(ServiceCollection services)
     {
         // Services
-        services.AddSingleton<IPeriodo, PeriodoService>();
-        services.AddSingleton<ICategoria, CategoriaService>();
-        services.AddSingleton<ISubCategoria, SubCategoriaService>();
-        services.AddSingleton<IMovimiento, MovimientoService>();
-        services.AddSingleton<IDialogService, DialogService>();
+        services.AddSingleton<ICalendario, CalendarioService>();
+        services.AddSingleton<IFestivo, FestivoService>();
+        services.AddSingleton<IHorario, HorarioService>();
+        services.AddSingleton<ICurso, CursoService>();
 
         // ViewModels
-        services.AddTransient<PeriodosViewModel>();
-        services.AddTransient<PeriodoViewModel>();
-
-        services.AddTransient<CategoriasViewModel>();
-        services.AddTransient<CategoriaViewModel>();
-
-        services.AddTransient<SubCategoriasViewModel>();
-        services.AddTransient<SubCategoriaViewModel>();
-
-        services.AddTransient<MovimientosViewModel>();
-        services.AddTransient<MovimientoViewModel>();
-
+        services.AddTransient<CalendarioViewModel>();
 
         // Views
-        services.AddSingleton<ListaPeriodos>();
-        services.AddSingleton<PeriodoView>();
-        services.AddSingleton<PeriodoCardView>();
-
-        services.AddSingleton<ListaCategorias>();
-        services.AddSingleton<CategoriaView>();
-
-        services.AddSingleton<ListaSubCategorias>();
-        services.AddSingleton<SubCategoriaView>();
-
-        services.AddSingleton<ListaMovimientos>();
-        services.AddSingleton<MovimientoView>();
+        services.AddSingleton<CalendarioView>();
+        services.AddSingleton<FestivosView>();
 
         return services.BuildServiceProvider();
     }

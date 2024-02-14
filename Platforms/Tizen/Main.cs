@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace PocketOne;
+namespace CalendarAE;
 
 class Program : MauiApplication
 {

@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace PocketOne;
+namespace CalendarAE;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

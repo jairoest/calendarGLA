@@ -1,5 +1,5 @@
 ﻿
-namespace PocketOne.ViewModels;
+namespace CalendarAE.ViewModels;
 public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]

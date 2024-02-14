@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="PocketOne.AppShell"
+    x:Class="CalendarAE.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:PocketOne"
-    xmlns:vi="clr-namespace:PocketOne.Views"
+    xmlns:local="clr-namespace:CalendarAE"
+    xmlns:vi="clr-namespace:CalendarAE.Views"
     Shell.FlyoutBehavior="Flyout"
     FlyoutIcon="homep1.png"
     Shell.TabBarIsVisible="False"
@@ -31,33 +31,15 @@
 
         <ShellContent
             Title="Home"
-            ContentTemplate="{DataTemplate vi:PeriodoCardView}"
+            ContentTemplate="{DataTemplate vi:CalendarioView}"
             FlyoutIcon="home.svg"    
-            Route="PeriodoCardView" />
+            Route="CalendarioView" />
 
         <ShellContent
             Title="Dashboard"
-            ContentTemplate="{DataTemplate vi:DashboardView}"
+            ContentTemplate="{DataTemplate vi:FestivosView}"
             FlyoutIcon="dashboard.svg"    
-            Route="DashboardView" />
-
-        <ShellContent
-            Title="Categorias"
-            ContentTemplate="{DataTemplate vi:ListaCategorias}"
-            FlyoutIcon="categorias.svg"    
-            Route="ListaCategorias" />
-
-        <ShellContent
-            Title="Periodos"
-            ContentTemplate="{DataTemplate vi:ListaPeriodos}"
-            FlyoutIcon="periodos.svg"    
-            Route="ListaPeriodos" />
-
-        <ShellContent
-            Title="Subcategorias"
-            ContentTemplate="{DataTemplate vi:ListaSubCategorias}"
-            FlyoutIcon="subcategorias.svg"
-            Route="ListaSubCategorias" />
+            Route="FestivosView" />
 
     </FlyoutItem>
 

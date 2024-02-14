@@ -1,5 +1,5 @@
 ﻿
-namespace PocketOne.Interfaces
+namespace CalendarAE.Interfaces
 {
     public interface IDialogService
     {

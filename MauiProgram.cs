@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
-namespace PocketOne;
+namespace CalendarAE;
 
 public static class MauiProgram
 {

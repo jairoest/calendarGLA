@@ -1,4 +1,4 @@
-﻿namespace PocketOne.Services;
+﻿namespace CalendarAE.Services;
 
 public class DialogService : IDialogService
 {

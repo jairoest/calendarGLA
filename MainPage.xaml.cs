@@ -1,4 +1,4 @@
-﻿namespace PocketOne;
+﻿namespace CalendarAE;
 
 public partial class MainPage : ContentPage
 {

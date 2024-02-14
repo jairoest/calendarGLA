@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace PocketOne;
+namespace CalendarAE;
 
 public class Program
 {

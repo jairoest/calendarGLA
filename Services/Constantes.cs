@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PocketOne.Services
+namespace CalendarAE.Services
 {
     internal class Constantes
     {
-        private const string DataBaseFileName = "SQLitePocketOne.db3";
+        private const string DataBaseFileName = "CalendarGLA.db3";
+        private const string DataBaseBackup = "CalendarGLABackup.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             SQLite.SQLiteOpenFlags.ReadWrite |
@@ -24,5 +25,16 @@ namespace PocketOne.Services
                 return System.IO.Path.Combine(basePath, DataBaseFileName);
             }
         }
+
+        public static string BackupPath
+        {
+            get
+            {
+                var basePath =
+                    System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+                return System.IO.Path.Combine(basePath, DataBaseBackup);
+            }
+        }
+
     }
 }
