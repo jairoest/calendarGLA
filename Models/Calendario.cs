@@ -24,7 +24,7 @@ namespace CalendarAE.Models
         /// <summary>
         /// Observaciones para indicar cosas como a que festivo corresponde una fecha en particular
         /// </summary>
-        public string? Observaciones { get; set; }
+        public string Observaciones { get; set; }
 
     }
 }

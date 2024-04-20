@@ -7,6 +7,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(CalendarioView), typeof(CalendarioView));
+        Routing.RegisterRoute(nameof(HorarioView), typeof(HorarioView));
         Routing.RegisterRoute(nameof(FestivosView), typeof(FestivosView));
 
     }

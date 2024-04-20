@@ -11,13 +11,15 @@ namespace CalendarAE.Interfaces
 
         public Task<List<Horario>> GetByCursoDia(string curso, byte dia);
 
+        public Task<List<Horario>> GetByCurso(string curso);
+
         public Task<int> Insert(Horario horario);
         
         public Task<int> Update(Horario horario);
         
         public Task<int> Delete(Horario horario);
 
-        public int LlenarHorarioBase();
+        public Task<int> LlenarHorarioBase();
 
     }
 }

@@ -9,6 +9,8 @@ namespace CalendarAE.Interfaces
 
         public Task<Festivo> GetByFecha(DateTime fecha);
 
+        public Task<List<Festivo>> GetByTipo(int tipo);
+
         public Task<int> Insert(Festivo festivo);
 
         public Task<int> Update(Festivo festivo);

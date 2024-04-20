@@ -5,13 +5,21 @@
              xmlns:sfcalendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              xmlns:sfgrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:sfcore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:sfbuttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:CalendarAE.ViewModels"
              xmlns:mo="clr-namespace:CalendarAE.Models"
              xmlns:local="clr-namespace:CalendarAE.Services"
-             Title="{Binding Titulo}"
+             Title="Calendario escolar"
+             Shell.BackgroundColor="DarkBlue"
+             
              x:DataType="vm:CalendarioViewModel">
+
+    <!--"#CBC0F2"-->
+    <ContentPage.BindingContext>
+        <vm:CalendarioViewModel />
+    </ContentPage.BindingContext>
     
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -20,50 +28,73 @@
     </ContentPage.Behaviors>
 
     <Grid RowDefinitions="Auto, Auto, *">
-        <!-- Header -->
+
+        <!-- Calendar body -->
         <Grid Grid.Row="0">
-            <Path Data="M 281.4809875488281 534.2091674804688 L 281.4809875488281 233.1959991455078 L 791.8945922851562 234.38575744628906 L 790.7048950195312 525.8807373046875 C 623.3431396484375 672.61962890625 453.601806640625 675.3958129882812 281.4809875488281 534.2091674804688 Z "
-                 Aspect="Fill" Opacity="0.5" Fill="{StaticResource Primary}"
-                  HeightRequest="150" Margin="0, 0" />
 
-            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *">
-                <Label Text="{Binding Titulo}" Grid.Row="0" Grid.Column="0" Margin="20, 40" FontSize="25" 
-                       TextColor="White" Grid.ColumnSpan="2">
-                </Label>
-                <Image Source="detallemovimientos.svg" Grid.Row="0" Grid.Column="1" 
-                       HeightRequest="80" WidthRequest="80" HorizontalOptions="EndAndExpand"></Image>
-            </Grid>
-        </Grid>
-
-        <!-- Background and datagrid -->
-        <Grid Padding="6" Grid.Row="1">
-            <Frame BorderColor="WhiteSmoke"
+            <Path Data="M 185.03427124023438 554.6094360351562 L 183.78805541992188 59.503997802734375 L 844.9627075195312 59.503997802734375 L 846.2645263671875 563.9658813476562 C 804.2423095703125 571.6433715820312 727.484619140625 573.7857055664062 687.8524169921875 581.1542358398438 C 541.0714111328125 593.1631469726562 407.14642333984375 567.6342163085938 407.14642333984375 567.6342163085938 C 407.14642333984375 567.6342163085938 304.54803466796875 549.7952270507812 185.03427124023438 554.6094360351562 Z "
+         Aspect="Fill" Opacity="0.3" Fill="{StaticResource Primary}"
+          HeightRequest="460" Margin="0, 0" />
+            <Grid Margin="0, 0">
+            <Frame Margin="0, 10" Padding="8" BorderColor="Transparent" VerticalOptions="Start"
                 CornerRadius="20"
-                HeightRequest="450"
-                WidthRequest="390"
+                HeightRequest="400"
+                WidthRequest="380"
                 HasShadow="True">
                 <Frame.Shadow>
                     <Shadow Radius="80" Opacity="0.2" />
                 </Frame.Shadow>
-
-                <Grid>
-                    <sfcalendar:SfCalendar>
-                        
+                
+                    <sfcalendar:SfCalendar x:Name="calendar"  BackgroundColor="White" ShowTrailingAndLeadingDates="True">
+                        <sfcalendar:SfCalendar.MonthView>
+                            <sfcalendar:CalendarMonthView>
+                                <sfcalendar:CalendarMonthView.SpecialDatesTextStyle>
+                                    <sfcalendar:CalendarTextStyle  TextColor="Red" />
+                                </sfcalendar:CalendarMonthView.SpecialDatesTextStyle>
+                            </sfcalendar:CalendarMonthView>
+                        </sfcalendar:SfCalendar.MonthView>
+                        <sfcalendar:SfCalendar.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName = "SelectionChanged"
+                                Command = "{Binding ConsultarDiaSeleccionadoCommand}"
+                                CommandParameter="{Binding Path=SelectedDate, Source={x:Reference calendar}}">
+                            </toolkit:EventToCommandBehavior>
+                        </sfcalendar:SfCalendar.Behaviors>
                     </sfcalendar:SfCalendar>
-                </Grid>
-
+                
             </Frame>
+            </Grid>
+        </Grid>
 
+        <!-- Text day -->
+        <Grid Grid.Row="1">
+            <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="Auto">
+
+                <Label Text="{Binding FechaSeleccionada}" Grid.Row="0" Grid.Column="0" Margin="10, 10" FontSize="18" 
+                       TextColor="#666666">
+                </Label>
+
+                <Label Text="{Binding Dia}" Grid.Row="1" Grid.Column="0" Margin="10, 5" FontAttributes="Bold" FontSize="60" 
+                       TextColor="#555555" LineBreakMode="WordWrap" MaxLines="1">
+                </Label>
+
+                <Label Text="{Binding Observaciones}" Grid.Row="2" Grid.Column="0" Margin="10, 5" FontAttributes="Bold" FontSize="18" 
+                       TextColor="#444444" LineBreakMode="WordWrap" MaxLines="1">
+                </Label>
+
+            </Grid>
         </Grid>
 
         <!-- Command buttons -->
         <Grid Grid.Row="2" RowDefinitions="Auto, *" Margin="0, 5">
             <Path Grid.RowSpan="2" Data="M 228.02801513671875 468.31951904296875 L 226.7796630859375 298.408935546875 L 277.96405029296875 315.1689453125 C 320.4095153808594 325.95697021484375 379.40545654296875 328.41156005859375 463.9747619628906 330.7731018066406 C 561.350830078125 333.4922790527344 575.0816040039062 306.5001220703125 646.2402954101562 294.94158935546875 C 729.8831176757812 281.3553466796875 713.6555786132812 277.6036682128906 729.8848266601562 278.7594909667969 C 729.0525512695312 278.7002258300781 728.6364135742188 339.18988037109375 728.6364135742188 460.2284851074219 C 728.6364135742188 462.33056640625 561.7548828125 463.38165283203125 228.02801513671875 468.31951904296875 Z "
-                  Aspect="Fill" Opacity="0.5" Fill="{StaticResource Primary}"
-                  HeightRequest="120" Margin="0, 0" />
-            
-            <Grid Grid.Row="2" Margin="5, 5">
-                <Grid RowDefinitions="10, Auto" ColumnDefinitions="70, 70,70,70,70" Margin="10, 6" ColumnSpacing="4">
+                  Aspect="UniformToFill" Opacity="0.3" Fill="{StaticResource Primary}"
+                  HeightRequest="90" Margin="0, 0" />
+
+            <Grid Grid.Row="1" Margin="0, 5">
+                <Grid RowDefinitions="1, Auto" ColumnDefinitions="*, 10,160" Margin="0, 10" ColumnSpacing="4">
+                    <!--<Button Grid.Row="1" Grid.Column="2" Text="Horario" BackgroundColor="Transparent" CornerRadius="68" ImageSource="save_mov"></Button>-->
+                    <Button Grid.Row="1" Grid.Column="2" Text="Horario" ContentLayout="Right, 4" BackgroundColor="Transparent" CornerRadius="20" Command="{Binding ConsultarHorarioCommand}" CommandParameter="{Binding Path=SelectedDate, Source={x:Reference calendar}}" ImageSource="edit_mov"></Button>
                 </Grid>
             </Grid>
         </Grid>

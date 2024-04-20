@@ -9,6 +9,8 @@ namespace CalendarAE.Interfaces
 
         public Task<Calendario> GetById(int id);
 
+        public Task<Calendario> GetByDate(DateTime fecha);
+
         public Task<int> Insert(Calendario calendario);
 
         public Task<int> Update(Calendario calendario);

@@ -23,6 +23,7 @@ namespace CalendarAE.Services
                 connectionDB.CreateTable<Horario>();
                 connectionDB.CreateTable<Festivo>();
                 connectionDB.CreateTable<Curso>();
+                connectionDB.CreateTable<Materia>();
             }
             catch (Exception ex)
             {

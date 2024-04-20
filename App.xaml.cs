@@ -29,12 +29,16 @@ public partial class App : Application
         services.AddSingleton<IFestivo, FestivoService>();
         services.AddSingleton<IHorario, HorarioService>();
         services.AddSingleton<ICurso, CursoService>();
+        services.AddSingleton<IMateria, MateriaService>();
+        services.AddSingleton<IDialogService, DialogService>();
 
         // ViewModels
         services.AddTransient<CalendarioViewModel>();
+        services.AddTransient<HorarioViewModel>();
 
         // Views
         services.AddSingleton<CalendarioView>();
+        services.AddSingleton<HorarioView>();
         services.AddSingleton<FestivosView>();
 
         return services.BuildServiceProvider();

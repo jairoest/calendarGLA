@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 namespace CalendarAE.ViewModels;
 
 [QueryProperty(nameof(DiaSeleccionado), nameof(DiaSeleccionado))]
-public partial class CalendarioViewModel: BaseViewModel
+public partial class HorarioViewModel: BaseViewModel
 {
     private readonly ICalendario calendario_service;
     private readonly IHorario horario_service;
@@ -13,16 +13,16 @@ public partial class CalendarioViewModel: BaseViewModel
     private readonly IFestivo festivo_service;
     private readonly IMateria materia_service;
 
+    private readonly IDialogService dialog_service;
+
+
     public ObservableCollection<Calendario> ListaCalendario{ get; set; } = new();
 
     public ObservableCollection<Curso> ListaCursos { get; set; } = new();
 
-    public ObservableCollection<Horario> ListaHorario { get; set; } = new();
+    public ObservableCollection<HorarioCal> ListaHorario { get; set; } = new();
 
     public ObservableCollection<DateTime> ListaFestivos { get; set; } = new();
-
-    public ObservableCollection<DateTime> ListaEventos { get; set; } = new();
-
 
     [ObservableProperty]
     Calendario diaSeleccionado;
@@ -40,17 +40,25 @@ public partial class CalendarioViewModel: BaseViewModel
     public string dia;
 
     [ObservableProperty]
+    public DateTime displayDate;
+
+    [ObservableProperty]
     public string observaciones;
 
-    public CalendarioViewModel()
+    public HorarioViewModel()
     {
         calendario_service = App.Current.Services.GetService<ICalendario>();
         horario_service = App.Current.Services.GetService<IHorario>();
         curso_service = App.Current.Services.GetService<ICurso>();
         festivo_service = App.Current.Services.GetService<IFestivo>();
         materia_service = App.Current.Services.GetService<IMateria>();
+        materia_service = App.Current.Services.GetService<IMateria>();
+        dialog_service = App.Current.Services.GetService<IDialogService>();
 
         Task tarea = ConsultarFestivos();
+
+        // _dialog = App.Current.Services.GetService<IDialogService>();
+        // Task.Run(async () => await ListarMovimientos());
 
     }
 
@@ -58,19 +66,11 @@ public partial class CalendarioViewModel: BaseViewModel
     public async Task ConsultarCalendario()
     {
         IsLoading = true;
-
-        // Iniciar datos base de las tablas 
-        bool iniciardatos = Preferences.Default.Get("IniciarDatos", true);
-        if (iniciardatos)
-        {
-            await IniciarDatosBase();
-            Preferences.Default.Set("IniciarDatos", false);
-        }
-
-
         ListaCalendario.Clear();
         var lista = await calendario_service.GetAll();
 
+        foreach (var item in lista) await calendario_service.Delete(item);
+        
         if (lista.Count == 0)
         {
             calendario_service.LlenarCalendarioBase();
@@ -87,70 +87,23 @@ public partial class CalendarioViewModel: BaseViewModel
         IsRefreshing = false;
     }
 
-    [RelayCommand]
-    public async Task IniciarDatosBase()
-    {
-        IsLoading = true;
-
-        // TODO: Permitir seleccion del curso actual
-        Preferences.Default.Set("CursoActual", "4A");
-
-        // Permitir configuracion de parametros
-        Preferences.Default.Set("FechaInicioPeriodo", new DateTime(2024, 01, 26, 0, 0, 0));
-        Preferences.Default.Set("FechaFinPeriodo", new DateTime(2024, 12, 06, 0, 0, 0));
-
-
-        #region 1. Iniciar datos de cursos
-        var listacursos = await curso_service.GetAll();
-        foreach (var item in listacursos) await curso_service.Delete(item);  // Borra todos items del horario
-        curso_service.LlenarCursosBase();
-        #endregion
-
-        #region 2. Iniciar datos de materias
-        var listamaterias = await materia_service.GetAll();
-        foreach (var item in listamaterias) await materia_service.Delete(item);  // Borra todos items del horario
-        materia_service.LlenarMateriasBase();
-        #endregion
-
-        #region 3. Iniciar datos de dias Festivos
-        var listafestivos = await festivo_service.GetAll();
-        foreach (var item in listafestivos) await festivo_service.Delete(item);
-        festivo_service.LlenarFestivosBase();
-        #endregion
-
-        #region 4. Iniciar datos calendario
-        var listacalendario = await calendario_service.GetAll();
-        foreach (var item in listacalendario) await calendario_service.Delete(item);
-        calendario_service.LlenarCalendarioBase();
-        #endregion
-
-        #region 5. Iniciar datos de Horario
-        var listahorario = await horario_service.GetAll();
-        foreach (var item in listahorario) await horario_service.Delete(item);  // Borra todos items del horario
-        await horario_service.LlenarHorarioBase();
-        #endregion
-
-        IsLoading = false;
-        IsRefreshing = false;
-    }
-
-
     public async Task ConsultarFestivos()
     {
         IsLoading = true;
-
         ListaFestivos.Clear();
         var lista = await festivo_service.GetAll();
 
-        foreach (var item in lista)
+        if (lista.Count == 0)
         {
-            if (item.Tipo != 0) ListaFestivos.Add(item.Fecha);
-            else ListaEventos.Add(item.Fecha);
+            festivo_service.LlenarFestivosBase();
+            lista = await festivo_service.GetAll();
         }
 
+        foreach (var item in lista) ListaFestivos.Add(item.Fecha);
         IsLoading = false;
         IsRefreshing = false;
     }
+
 
     [RelayCommand]
     public async Task ListarCursosEstado()
@@ -159,7 +112,7 @@ public partial class CalendarioViewModel: BaseViewModel
         ListaCursos.Clear();
 
         var listaBase = await curso_service.GetAll();
-        // foreach (var item in listaBase) await movimiento_service.Delete(item);  // Borra todos los movimientos 
+        foreach (var item in listaBase) await curso_service.Delete(item);  // Borra todos los movimientos 
         if (listaBase.Count == 0)
         {
             curso_service.LlenarCursosBase();
@@ -174,16 +127,71 @@ public partial class CalendarioViewModel: BaseViewModel
         IsRefreshing = false;
     }
 
+
     [RelayCommand]
     public async Task ConsultarHorario()
     {
-        var navparam = new Dictionary<string, object>
-        {
-            { "DiaSeleccionado", DiaSeleccionado }
-        };
+        IsLoading = true;
+        ListaHorario.Clear();
 
-        await Shell.Current.GoToAsync(nameof(HorarioView), navparam);
+        DisplayDate = DateTime.Now;
+
+        // Borrar horario para inicializar datos
+        var listaBase = await horario_service.GetAll();
+        
+        /*
+        foreach (var item in listaBase)
+        {
+            await horario_service.Delete(item);  // Borra todos items del horario
+        }
+        listaBase = await horario_service.GetAll();
+        */
+
+        if (listaBase.Count == 0)
+        {
+            await horario_service.LlenarHorarioBase();
+        }
+
+        List<Materia> listamaterias = await materia_service.GetByCurso(Preferences.Default.Get("CursoActual", "4A"));
+
+        /*
+        foreach (var item in listamaterias)
+        {
+            await materia_service.Delete(item);  // Borra todos items del horario
+        }
+        listamaterias = await materia_service.GetByCurso("4A");
+        */
+
+        if (listamaterias.Count == 0)
+        {
+            materia_service.LlenarMateriasBase();
+            listamaterias = await materia_service.GetByCurso(Preferences.Default.Get("CursoActual", "4A"));
+        }
+
+        List<Horario> lista = await horario_service.GetByCurso(Preferences.Default.Get("CursoActual", "4A"));  // Leer el horario del curso activo
+        foreach (var item in lista)
+        {
+            // Arreglar tema color de fondo
+            // Ver configuracion de parametros
+            // Agregar Observaciones en dias de clase
+            HorarioCal itemhorario = new()
+            {
+                NombreCurso = item.NombreCurso,
+                Dia = item.Dia,
+                HoraInicio = item.HoraInicio,
+                HoraFin = item.HoraFin,
+                Materia = item.Materia,
+                EsTodoElDia = item.EsTodoElDia,
+                ColorFondo = item.EsTodoElDia ? Brush.GhostWhite : (Brush)new BrushTypeConverter().ConvertFromString(listamaterias.Find(e => e.NombreMateria == item.Materia).Color)
+            };
+            ListaHorario.Add(itemhorario);
+        }
+
+        // Titulo = $"Curso {CursoDetails.NombreCurso}";
+        IsLoading = false;
+        IsRefreshing = false;
     }
+
 
     [RelayCommand]
     public async Task ListarHorarioCurso()
@@ -192,7 +200,7 @@ public partial class CalendarioViewModel: BaseViewModel
         ListaHorario.Clear();
 
         var lista = await horario_service.GetByCursoDia(CursoDetails.NombreCurso, DiaSeleccionado.Dia);
-        foreach (var item in lista) ListaHorario.Add(item);
+        // foreach (var item in lista) ListaHorario.Add(item);
 
         Titulo = $"Horario de {CursoDetails.NombreCurso}";
 
@@ -214,7 +222,7 @@ public partial class CalendarioViewModel: BaseViewModel
             case 0:
                 // Dia normal con clase
                 Dia = $"Día {DiaSeleccionado.Dia}";
-                Observaciones = DiaSeleccionado.Observaciones;
+                Observaciones = "Diario";
                 break;
 
             case 1: // Evento colegio presencial sin clase
@@ -238,5 +246,7 @@ public partial class CalendarioViewModel: BaseViewModel
         IsRefreshing = false;
 
     }
+
+
 
 }
