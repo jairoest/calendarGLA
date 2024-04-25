@@ -6,7 +6,7 @@ namespace CalendarAE.Services
 {
     public class JsonFetcher
     {
-        private const string JsonUrl = "https://username.github.io/repository/jsonfile.json"; // Reemplaza con tu URL real
+        private const string JsonUrl = "https://jairoest.github.io/calendarGLA/festivos.json";
 
         public async Task<string> FetchJsonAsync()
         {
