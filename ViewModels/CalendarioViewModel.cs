@@ -67,7 +67,6 @@ public partial class CalendarioViewModel: BaseViewModel
             Preferences.Default.Set("IniciarDatos", false);
         }
 
-
         ListaCalendario.Clear();
         var lista = await calendario_service.GetAll();
 

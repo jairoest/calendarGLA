@@ -1,4 +1,6 @@
 ﻿
+using System.Text.Json;
+
 namespace CalendarAE.Services
 {
     internal class FestivoService : IFestivo
@@ -28,6 +30,12 @@ namespace CalendarAE.Services
 
         public int LlenarFestivosBase()
         {
+            // Leer datos desde remote JSON file
+            JsonFetcher jsonFetcher = new JsonFetcher();
+            Task<string> datosFestivos = jsonFetcher.FetchJsonAsync();
+
+            var data = JsonSerializer.Deserialize<Festivo[]>(datosFestivos.Result);
+
             try
             {
                 List<Festivo> listaFestivos = new()
@@ -67,13 +75,14 @@ namespace CalendarAE.Services
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 8), 2, "Jornada pedagógica"),// Retorno docentes despues de vacaciones
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 9), 0, "Regreso a clases"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 11), 0, "Corte parcial Segundo Trimestre"),
-                    new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 19), 1, "Segunda Jornada de Desarrollo Humano"),
+                    new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 18), 0, "Inicio Polimotor"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 20), 2, "Festivo - Dia de la Independencia"),
+                    new Festivo().NuevoFestivo(new System.DateTime(2024, 07, 25), 0, "Segundo encuentro formativo para familias"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 08, 7), 2, "Festivo - Batalla de Boyacá"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 08, 15), 0, "Finalización segundo trimestre"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 08, 16), 0, "Inicio Tercer Trimestre"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 08, 19), 2, "Festivo - La Asunción"),
-                    new Festivo().NuevoFestivo(new System.DateTime(2024, 08, 23), 3, "Student Led Conference (Segundo Trimestre)"),
+                    new Festivo().NuevoFestivo(new System.DateTime(2024, 08, 23), 0, "Campamento STEM"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 09, 20), 1, "Tercera Jornada de Desarrollo Humano"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 09, 30), 0, "Corte Parcial Segundo Trimestre"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 10, 7), 4, "Semana de receso"),
@@ -85,7 +94,6 @@ namespace CalendarAE.Services
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 10, 15), 0, "Regreso de estudiantes a clase"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 10, 25), 3, "Evento - Día del Estudiante"),// Dia del estudiante
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 11, 4), 2, "Festivo - Dia de Todos los santos"),
-                    new Festivo().NuevoFestivo(new System.DateTime(2024, 11, 8), 3, "Clausuras Ciclos Intermedio, Pre juvenil, Juvenil y Especializado"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 11, 11), 2, "Festivo - Independencia de Cartagena"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 11, 15), 0, "Finalización Tercer Trimestre"),
                     new Festivo().NuevoFestivo(new System.DateTime(2024, 11, 22), 3, "Student Led Conference 3º a 11º (Tercer Trimestre")

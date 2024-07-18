@@ -6,25 +6,23 @@ namespace CalendarAE.Services
 {
     public class JsonFetcher
     {
-        private const string JsonUrl = "https://jairoest.github.io/calendarGLA/festivos.json";
+        private const string JsonUrl = "https://jairoest.github.io/calendarGLA/Data/festivos.json";
 
         public async Task<string> FetchJsonAsync()
         {
             try
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    HttpResponseMessage response = await client.GetAsync(JsonUrl);
+                using HttpClient client = new();
+                HttpResponseMessage response = await client.GetAsync(JsonUrl);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string jsonContent = await response.Content.ReadAsStringAsync();
-                        return jsonContent; // Aquí puedes procesar los datos JSON según tus necesidades
-                    }
-                    else
-                    {
-                        return $"Error: {response.StatusCode}";
-                    }
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    return jsonContent; // Aquí puedes procesar los datos JSON según tus necesidades
+                }
+                else
+                {
+                    return $"Error: {response.StatusCode}";
                 }
             }
             catch (Exception ex)
